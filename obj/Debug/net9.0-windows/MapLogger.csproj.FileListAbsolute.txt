@@ -35,3 +35,4 @@ C:\Users\tomos\OneDrive\Documents\c# projects\MapLogger\obj\Debug\net9.0-windows
 C:\Users\tomos\OneDrive\Documents\c# projects\MapLogger\obj\Debug\net9.0-windows\MapLogger.pdb
 C:\Users\tomos\OneDrive\Documents\c# projects\MapLogger\obj\Debug\net9.0-windows\MapLogger.genruntimeconfig.cache
 C:\Users\tomos\OneDrive\Documents\c# projects\MapLogger\obj\Debug\net9.0-windows\ref\MapLogger.dll
+C:\Users\tomos\OneDrive\Documents\c# projects\MapLogger\obj\Debug\net9.0-windows\MapLogger.sourcelink.json

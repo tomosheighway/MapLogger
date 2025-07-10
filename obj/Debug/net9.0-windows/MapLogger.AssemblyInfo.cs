@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MapLogger")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc645067e806be1a50fc7c0c71b9293138be633e")]
 [assembly: System.Reflection.AssemblyProductAttribute("MapLogger")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MapLogger")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -15,14 +15,14 @@ namespace MapLogger
             InitializeComponent();
 
             // Setup GMap.NET
-            gmapControl.MapProvider = GMapProviders.OpenStreetMap;
+            gmap.MapProvider = GMapProviders.OpenStreetMap;
             GMaps.Instance.Mode = AccessMode.ServerOnly; // or ServerAndCache for limited offline support
 
-            gmapControl.Position = new PointLatLng(51.4545, -2.5879); // set to bristol on loadup 
-            gmapControl.MinZoom = 2;
-            gmapControl.MaxZoom = 18;
-            gmapControl.Zoom = 10;
-            gmapControl.ShowCenter = false;
+            gmap.Position = new PointLatLng(51.4545, -2.5879); // set to bristol on loadup 
+            gmap.MinZoom = 2;
+            gmap.MaxZoom = 18;
+            gmap.Zoom = 10;
+            gmap.ShowCenter = false;
         }
 
         private void LogLocation_Click(object sender, RoutedEventArgs e)
@@ -42,8 +42,8 @@ namespace MapLogger
                     }
                 };
 
-                gmapControl.Markers.Add(marker);
-                gmapControl.Position = new PointLatLng(lat, lng);
+                gmap.Markers.Add(marker);
+                gmap.Position = new PointLatLng(lat, lng);
             }
             else
             {
