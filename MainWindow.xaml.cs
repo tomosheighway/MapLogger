@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 using System.Windows;
 using GMap.NET;
 using GMap.NET.MapProviders;
@@ -10,6 +12,8 @@ namespace MapLogger
 {
     public partial class MainWindow : Window
     {
+        private readonly string csvFilePath = System.IO.Path.Combine(AppContext.BaseDirectory, @"..\..\..\Savedlocations.csv");
+
         public MainWindow()
         {
             InitializeComponent();
@@ -44,11 +48,28 @@ namespace MapLogger
 
                 gmap.Markers.Add(marker);
                 gmap.Position = new PointLatLng(lat, lng);
+
+                AppendToCsv(lat, lng, DateTime.Now);
             }
             else
             {
                 MessageBox.Show("Invalid coordinates. Please enter valid decimal numbers.");
             }
         }
+        private void AppendToCsv(double lat, double lng, DateTime timestamp)
+            {
+                bool fileExists = File.Exists(csvFilePath);
+
+                using (var writer = new StreamWriter(csvFilePath, append: true, Encoding.UTF8))
+                {
+                    if (!fileExists)
+                    {
+                        writer.WriteLine("Latitude,Longitude,Timestamp");
+                    }
+
+                    writer.WriteLine($"{lat},{lng},{timestamp:O}");  // writes long lat and time 
+                }
+            }
+        
     }
 }
