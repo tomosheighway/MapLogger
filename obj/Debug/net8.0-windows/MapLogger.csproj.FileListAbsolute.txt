@@ -1,0 +1,3 @@
+C:\Users\tomos\OneDrive\Documents\c# projects\MapLogger\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\tomos\OneDrive\Documents\c# projects\MapLogger\obj\Debug\net8.0-windows\MapLogger_MarkupCompile.cache
+C:\Users\tomos\OneDrive\Documents\c# projects\MapLogger\obj\Debug\net8.0-windows\MapLogger.csproj.AssemblyReference.cache
