@@ -1,7 +1,15 @@
-﻿using System;
+﻿/* 
+TODO TASKS 
+Option to search location without logging / saving it 
+Add key for colours of presaved / searching points 
+Add some map navigation buttons e.g zoom etc 
+*/ 
+
+using System;
 using System.IO;
 using System.Text;
 using System.Windows;
+using System.Windows.Input;
 using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsPresentation;
@@ -27,6 +35,8 @@ namespace MapLogger
             gmap.MaxZoom = 18;
             gmap.Zoom = 10;
             gmap.ShowCenter = false;
+            gmap.CanDragMap = true;
+            gmap.DragButton = MouseButton.Left;
 
             LoadSavedLocations(); 
         }
