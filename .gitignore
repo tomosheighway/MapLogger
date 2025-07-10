@@ -1,0 +1,18 @@
+
+# generic git ignore for .net projects 
+## Ignore build outputs
+bin/
+obj/
+
+## User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## VS Code settings (optional)
+.vscode/
+
+## OS junk
+.DS_Store
+Thumbs.db
