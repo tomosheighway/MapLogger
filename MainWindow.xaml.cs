@@ -27,6 +27,8 @@ namespace MapLogger
             gmap.MaxZoom = 18;
             gmap.Zoom = 10;
             gmap.ShowCenter = false;
+
+            LoadSavedLocations(); 
         }
 
         private void LogLocation_Click(object sender, RoutedEventArgs e)
@@ -57,19 +59,59 @@ namespace MapLogger
             }
         }
         private void AppendToCsv(double lat, double lng, DateTime timestamp)
-            {
-                bool fileExists = File.Exists(csvFilePath);
+        {
+            bool fileExists = File.Exists(csvFilePath);
 
-                using (var writer = new StreamWriter(csvFilePath, append: true, Encoding.UTF8))
+            using (var writer = new StreamWriter(csvFilePath, append: true, Encoding.UTF8))
+            {
+                if (!fileExists)
                 {
-                    if (!fileExists)
+                    writer.WriteLine("Latitude,Longitude,Timestamp");
+                }
+
+                writer.WriteLine($"{lat},{lng},{timestamp:O}");  // writes long lat and time 
+            }
+        }
+
+        private void LoadSavedLocations()
+        {
+            if (!File.Exists(csvFilePath)) return;  
+
+            using (var reader = new StreamReader(csvFilePath))
+            {
+                string? line;
+                bool isFirstLine = true;
+
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if (isFirstLine)
                     {
-                        writer.WriteLine("Latitude,Longitude,Timestamp");
+                        isFirstLine = false; // Skip head in csv 
+                        continue;
                     }
 
-                    writer.WriteLine($"{lat},{lng},{timestamp:O}");  // writes long lat and time 
+                    var parts = line.Split(',');
+                    if (parts.Length >= 2 &&
+                        double.TryParse(parts[0], out double lat) &&
+                        double.TryParse(parts[1], out double lng))
+                    {
+                        var marker = new GMapMarker(new PointLatLng(lat, lng))
+                        {
+                            Shape = new Ellipse
+                            {
+                                Width = 10,
+                                Height = 10,
+                                Stroke = Brushes.Blue,
+                                StrokeThickness = 2,
+                                Fill = Brushes.LightBlue
+                            }
+                        };
+                        gmap.Markers.Add(marker);
+                    }
                 }
             }
+        }
+    
         
     }
 }
