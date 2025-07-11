@@ -1,9 +1,10 @@
 ﻿/* 
 TODO TASKS 
-Option to search location without logging / saving it 
+Improve error handling to prevent saving of a location that has already been saved. 
 Add key for colours of presaved / searching points 
-Add some map navigation buttons e.g zoom etc 
-*/ 
+Zoom in on point when searching
+Add manual zoom buttons 
+*/
 
 using System;
 using System.IO;
@@ -21,6 +22,7 @@ namespace MapLogger
     public partial class MainWindow : Window
     {
         private readonly string csvFilePath = System.IO.Path.Combine(AppContext.BaseDirectory, @"..\..\..\Savedlocations.csv");
+        private GMapMarker? tempMarker = null;
 
         public MainWindow()
         {
@@ -38,15 +40,17 @@ namespace MapLogger
             gmap.CanDragMap = true;
             gmap.DragButton = MouseButton.Left;
 
-            LoadSavedLocations(); 
+            LoadSavedLocations();
         }
 
-        private void LogLocation_Click(object sender, RoutedEventArgs e)
+        private void SaveLocation_Click(object sender, RoutedEventArgs e)
         {
-            if (double.TryParse(latBox.Text, out double lat) &&
-                double.TryParse(lonBox.Text, out double lng))
+            if (tempMarker != null)
             {
-                var marker = new GMapMarker(new PointLatLng(lat, lng))
+                var position = tempMarker.Position;
+
+                // create new permanant marker to match temp
+                var marker = new GMapMarker(position)
                 {
                     Shape = new Ellipse
                     {
@@ -59,15 +63,53 @@ namespace MapLogger
                 };
 
                 gmap.Markers.Add(marker);
-                gmap.Position = new PointLatLng(lat, lng);
+                AppendToCsv(position.Lat, position.Lng, DateTime.Now);
 
-                AppendToCsv(lat, lng, DateTime.Now);
+                // Remove the temp marker now it has been saved
+                gmap.Markers.Remove(tempMarker);
+                tempMarker = null;
+
+                MessageBox.Show("Location saved.");
             }
             else
             {
-                MessageBox.Show("Invalid coordinates. Please enter valid decimal numbers.");
+                MessageBox.Show("Please search for a location first.");
             }
         }
+
+        private void SearchLocation_Click(object sender, RoutedEventArgs e)
+        {
+            if (double.TryParse(latBox.Text, out double lat) &&
+                double.TryParse(lonBox.Text, out double lng))
+            {
+                // Remove current temp if there is one 
+                if (tempMarker != null)
+                {
+                    gmap.Markers.Remove(tempMarker);
+                }
+
+                // Create the new temporary marker
+                tempMarker = new GMapMarker(new PointLatLng(lat, lng))
+                {
+                    Shape = new Ellipse
+                    {
+                        Width = 10,
+                        Height = 10,
+                        Stroke = Brushes.Blue,
+                        StrokeThickness = 2,
+                        Fill = Brushes.Blue
+                    }
+                };
+
+                gmap.Markers.Add(tempMarker);
+                gmap.Position = new PointLatLng(lat, lng);
+            }
+            else
+            {
+                MessageBox.Show("Invalid coordinates.");
+            }
+        }
+
         private void AppendToCsv(double lat, double lng, DateTime timestamp)
         {
             bool fileExists = File.Exists(csvFilePath);
@@ -85,7 +127,7 @@ namespace MapLogger
 
         private void LoadSavedLocations()
         {
-            if (!File.Exists(csvFilePath)) return;  
+            if (!File.Exists(csvFilePath)) return;
 
             using (var reader = new StreamReader(csvFilePath))
             {
@@ -121,7 +163,7 @@ namespace MapLogger
                 }
             }
         }
-    
-        
+
+
     }
 }

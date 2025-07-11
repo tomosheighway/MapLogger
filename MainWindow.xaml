@@ -16,7 +16,8 @@
             <TextBox x:Name="latBox" Width="100" Margin="5"/>
             <TextBlock Text="Longitude:" Margin="0,0,0,2"/>
             <TextBox x:Name="lonBox" Width="100" Margin="5"/>
-            <Button Content="Log Location" Click="LogLocation_Click" Margin="5"/>
+            <Button Content="Search Location" Click="SearchLocation_Click" Margin="5"/>
+            <Button Content="Save Location" Click="SaveLocation_Click" Margin="5"/>
         </StackPanel>
     </Grid>
 </Window>
