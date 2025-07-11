@@ -31,9 +31,9 @@ namespace MapLogger
             mapService = new MapService(gmap);
             logger = new LocationLogger();
 
-            mapService.InitializeMap();
-            var savedLocations = logger.LoadLocations();
-            mapService.AddSavedMarkers(savedLocations);
+            mapService.InitializeMap();             //setup map 
+            var savedLocations = logger.LoadLocations();       // get saved locations from csv 
+            mapService.AddSavedMarkers(savedLocations);        // add to map 
         }
 
         private void SearchLocation_Click(object sender, RoutedEventArgs e)
