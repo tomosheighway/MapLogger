@@ -5,7 +5,6 @@ Full project spec coming soon...
 
 /* 
 TODO TASKS:
-
 Improve error handling to prevent saving of a location that has already been saved. 
 Add key for colours of presaved / searching points 
 Zoom in on point when searching
