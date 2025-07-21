@@ -8,10 +8,21 @@ namespace MapLogger
     public class LocationLogger
     {
         private readonly string csvPath = Path.Combine(AppContext.BaseDirectory, @"..\..\..\Savedlocations.csv");
+        private const double Tolerance = 0.00005; // 5 meters
 
-        public void AppendLocation(LocationModel location)
+        public bool AppendLocation(LocationModel location)
         {
             bool fileExists = File.Exists(csvPath);
+            var existingLocations = LoadLocations();
+
+            bool isDuplicate = existingLocations.Any(l =>
+                Math.Abs(l.Latitude - location.Latitude) < Tolerance &&
+                Math.Abs(l.Longitude - location.Longitude) < Tolerance);
+
+            if (isDuplicate)
+            {
+                return false; // Location already exists
+            }
 
             using var writer = new StreamWriter(csvPath, append: true, Encoding.UTF8);
             if (!fileExists)
@@ -20,6 +31,7 @@ namespace MapLogger
             }
 
             writer.WriteLine($"{location.Latitude},{location.Longitude},{location.Timestamp:O}");
+            return true; //location added  
         }
 
         public List<LocationModel> LoadLocations()

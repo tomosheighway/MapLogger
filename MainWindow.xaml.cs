@@ -1,10 +1,10 @@
 /* 
 TODO TASKS 
-Improve error handling to prevent saving of a location that has already been saved. 
 Add key for colours of presaved / searching points 
 Click on a point to load its x and y location 
 Option to then delete pin
 Allow user to add text notes about a given location 
+Allow to click on map to add pin then save it
 */
 
 using System;
@@ -63,10 +63,19 @@ namespace MapLogger
         private void SaveLocation_Click(object sender, RoutedEventArgs e)
         {
             var location = mapService.SaveTemporaryMarker();
+
             if (location != null)
             {
-                logger.AppendLocation(location);
-                MessageBox.Show("Location saved.");
+                bool saved = logger.AppendLocation(location);
+
+                if (saved)
+                {
+                    MessageBox.Show("Location saved.");
+                }
+                else
+                {
+                    MessageBox.Show("Duplicate location has not been saved");
+                }
             }
             else
             {
