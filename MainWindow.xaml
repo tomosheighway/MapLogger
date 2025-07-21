@@ -9,7 +9,23 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <gmap:GMapControl x:Name="gmap" Grid.Row="0" />
+        <Grid Grid.Row="0"> 
+            <gmap:GMapControl x:Name="gmap" /> 
+
+                    <!-- Zoom buttons in top right -->
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Margin="10">       
+                        <Button Click="ZoomIn_Click" Margin="4" Background="Transparent">
+                            <TextBlock Text="+" FontWeight="Bold" FontSize="16"/>
+                        </Button>
+                        <Button Click="ZoomOut_Click" Margin="4" Background="Transparent">
+                            <TextBlock Text="-" FontWeight="Bold" FontSize="16"/>
+                        </Button>
+                    </StackPanel>
+        </Grid>
+
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
             <TextBlock Text="Latitude:" Margin="0,0,0,2"/>
@@ -18,8 +34,10 @@
             <TextBox x:Name="lonBox" Width="100" Margin="5"/>
             <Button Content="Search Location" Click="SearchLocation_Click" Margin="5"/>
             <Button Content="Save Location" Click="SaveLocation_Click" Margin="5"/>
+            <!-- 
             <Button Content="ZOOM +" Click="ZoomIn_Click" Margin="5"/>
-            <Button Content="ZOOM -" Click="ZoomOut_Click" Margin="5"/>
+            <Button Content="ZOOM -" Click="ZoomOut_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5"/>
+            -->
         </StackPanel>
     </Grid>
 </Window>
