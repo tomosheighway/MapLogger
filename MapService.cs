@@ -47,7 +47,7 @@ namespace MapLogger
                 gmap.Zoom -= 1;
             }
         }
-        
+
         public void SetTemporaryMarker(double lat, double lng)
         {
             if (tempMarker != null)
@@ -69,6 +69,7 @@ namespace MapLogger
 
             gmap.Markers.Add(tempMarker);
             gmap.Position = new PointLatLng(lat, lng);
+            gmap.Zoom += 1;             // Increase zoom when searching point
         }
 
         public LocationModel? SaveTemporaryMarker()
