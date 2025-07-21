@@ -32,13 +32,29 @@ namespace MapLogger
             gmap.DragButton = MouseButton.Left;
         }
 
+        public void ZoomIn()
+        {
+            if (gmap.Zoom < gmap.MaxZoom)
+            {
+                gmap.Zoom += 1;
+            }
+        }
+
+        public void ZoomOut()
+        {
+            if (gmap.Zoom > gmap.MinZoom)
+            {
+                gmap.Zoom -= 1;
+            }
+        }
+        
         public void SetTemporaryMarker(double lat, double lng)
         {
             if (tempMarker != null)
             {
                 gmap.Markers.Remove(tempMarker);
             }
-            
+
             tempMarker = new GMapMarker(new PointLatLng(lat, lng))
             {
                 Shape = new Ellipse
@@ -104,5 +120,6 @@ namespace MapLogger
                 gmap.Markers.Add(marker);
             }
         }
+        
     }
 }

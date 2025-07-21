@@ -39,6 +39,16 @@ namespace MapLogger
             mapService.AddSavedMarkers(savedLocations);        // add to map 
         }
 
+        private void ZoomIn_Click(object sender, RoutedEventArgs e)
+        {
+            mapService.ZoomIn();
+        }
+
+        private void ZoomOut_Click(object sender, RoutedEventArgs e)
+        {
+            mapService.ZoomOut();
+        }
+
         private void SearchLocation_Click(object sender, RoutedEventArgs e)
         {
             if (double.TryParse(latBox.Text, out double lat) &&

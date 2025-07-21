@@ -18,6 +18,8 @@
             <TextBox x:Name="lonBox" Width="100" Margin="5"/>
             <Button Content="Search Location" Click="SearchLocation_Click" Margin="5"/>
             <Button Content="Save Location" Click="SaveLocation_Click" Margin="5"/>
+            <Button Content="ZOOM +" Click="ZoomIn_Click" Margin="5"/>
+            <Button Content="ZOOM -" Click="ZoomOut_Click" Margin="5"/>
         </StackPanel>
     </Grid>
 </Window>
