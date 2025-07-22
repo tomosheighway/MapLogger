@@ -27,6 +27,7 @@ namespace MapLogger
         public MainWindow()
         {
             InitializeComponent();
+            ShowInstructions();
 
             mapService = new MapService(gmap);
             logger = new LocationLogger();
@@ -91,7 +92,7 @@ namespace MapLogger
                 MessageBox.Show("Please search for a location first.");
             }
         }
-        
+
         private void Save_MouseRightClick(object sender, MouseButtonEventArgs e)
         {
             var point = e.GetPosition(gmap);
@@ -99,6 +100,26 @@ namespace MapLogger
 
             mapService.SetTemporaryMarker(latLng.Lat, latLng.Lng);
         }
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            ShowInstructions();
+        }
+        
+        private void ShowInstructions()
+        {
+            MessageBox.Show(
+                "Welcome to the MapLogger Windows Form App\n\n" +
+                "Right click on the map to select a location.\n" +
+                "Click 'Save Location' to store it.\n" +
+                "Use 'Search Location' to jump to specific coordinates.\n" +
+                "Use the zoom buttons, trackpad or double-click to zoom in.\n\n" +
+                "Developed by Tomos Heighway",
+                "MapLogger - Getting Started",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
+        }
+
 
 
     }

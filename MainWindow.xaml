@@ -30,6 +30,7 @@
 
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+            <Button Content="?" Click="Help_Click" Margin="5"/>
             <TextBlock Text="Latitude:" Margin="0,0,0,2"/>
             <TextBox x:Name="latBox" Width="100" Margin="5"/>
             <TextBlock Text="Longitude:" Margin="0,0,0,2"/>
