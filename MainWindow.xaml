@@ -10,7 +10,8 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0"> 
-            <gmap:GMapControl x:Name="gmap" /> 
+            <gmap:GMapControl x:Name="gmap" 
+                MouseDoubleClick="Zoom_MouseDoubleClick" />
 
                     <!-- Zoom buttons in top right -->
                     <StackPanel Orientation="Vertical"

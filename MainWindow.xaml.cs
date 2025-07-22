@@ -47,6 +47,16 @@ namespace MapLogger
             mapService.ZoomOut();
         }
 
+        private void Zoom_MouseDoubleClick(object sender, MouseButtonEventArgs e)  // zoom into cursor location on double click 
+        {
+            if (gmap.Zoom < gmap.MaxZoom)
+            {
+                gmap.Position = gmap.FromLocalToLatLng((int)e.GetPosition(gmap).X, (int)e.GetPosition(gmap).Y);
+                gmap.Zoom += 1;
+            }
+        }
+
+
         private void SearchLocation_Click(object sender, RoutedEventArgs e)
         {
             if (double.TryParse(latBox.Text, out double lat) &&
