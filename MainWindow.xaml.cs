@@ -4,7 +4,6 @@ Add key for colours of presaved / searching points
 Click on a point to load its x and y location 
 Option to then delete pin
 Allow user to add text notes about a given location 
-Allow to click on map to add pin then save it
 */
 
 using System;
@@ -92,5 +91,15 @@ namespace MapLogger
                 MessageBox.Show("Please search for a location first.");
             }
         }
+        
+        private void Save_MouseRightClick(object sender, MouseButtonEventArgs e)
+        {
+            var point = e.GetPosition(gmap);
+            var latLng = gmap.FromLocalToLatLng((int)point.X, (int)point.Y);
+
+            mapService.SetTemporaryMarker(latLng.Lat, latLng.Lng);
+        }
+
+
     }
 }
