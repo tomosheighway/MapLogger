@@ -17,4 +17,8 @@ Add key for colours of presaved / searching points
 Click on a existing saved pin to load its x and y location 
 Option to then delete pin
 Allow user to add text notes about a given location 
+Update to use real DB not CSV file 
+Login / user then store points for that given user. 
+Add overlay lines similar to - https://www.independent-software.com/gmap-net-tutorial-maps-markers-and-polygons.html/
+Offline functionality to store localy etc 
 */
