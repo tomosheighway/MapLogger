@@ -69,5 +69,35 @@ namespace MapLogger
 
             return list;
         }
+
+        public bool DeleteLocation(LocationModel location)
+        {
+            if (!File.Exists(csvPath))
+                return false;
+
+            var locations = LoadLocations();
+
+            locations.RemoveAll(l => // check tolerance 
+                Math.Abs(l.Latitude - location.Latitude) < Tolerance &&
+                Math.Abs(l.Longitude - location.Longitude) < Tolerance);
+
+            try
+            {
+                using var writer = new StreamWriter(csvPath, false, Encoding.UTF8);
+
+                //rewrite entire csv file. Use of proper DB in future instead 
+                writer.WriteLine("Latitude,Longitude,Timestamp");
+                foreach (var loc in locations)
+                {
+                    writer.WriteLine($"{loc.Latitude},{loc.Longitude},{loc.Timestamp:O}");
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

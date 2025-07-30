@@ -138,7 +138,7 @@ namespace MapLogger
             if (result == MessageBoxResult.Yes)
             {
                 mapService.RemoveMarker(location);
-                //logger.DeleteLocation(location);    // for future use when delete from csv is added to location logger class 
+                logger.DeleteLocation(location);
             }
         }
     }
