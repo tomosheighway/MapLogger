@@ -39,6 +39,7 @@ namespace MapLogger
             mapService.InitializeMap();             //setup map 
             var savedLocations = logger.LoadLocations();       // get saved locations from csv 
             mapService.AddSavedMarkers(savedLocations);        // add to map 
+            mapService.SavedMarkerClicked += SavedMarker_Click;
         }
 
         private void ZoomIn_Click(object sender, RoutedEventArgs e)
@@ -83,13 +84,13 @@ namespace MapLogger
                 bool saved = logger.AppendLocation(location);
 
                 if (saved)
-                {
+                    {
                     MessageBox.Show("Location saved.");
-                }
+                    }
                 else
-                {
+                    {
                     MessageBox.Show("Duplicate location has not been saved");
-                }
+                    }
             }
             else
             {
@@ -105,11 +106,11 @@ namespace MapLogger
             mapService.SetTemporaryMarker(latLng.Lat, latLng.Lng);
         }
 
-        private void Help_Click(object sender, RoutedEventArgs e)
-        {
-            ShowInstructions();
-        }
-        
+            private void Help_Click(object sender, RoutedEventArgs e)
+            {
+                ShowInstructions();
+            }
+
         private void ShowInstructions()
         {
             MessageBox.Show(
@@ -124,7 +125,22 @@ namespace MapLogger
                 MessageBoxImage.Information);
         }
 
+        // 🔹 Event handler for saved marker clicks
+        private void SavedMarker_Click(LocationModel location)
+        {
+            var result = MessageBox.Show(
+                $"Latitude: {location.Latitude}\n" +
+                $"Longitude: {location.Longitude}\n\n" +
+                "Do you want to delete this marker?",
+                "Marker Details",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Information);
 
-
+            if (result == MessageBoxResult.Yes)
+            {
+                mapService.RemoveMarker(location);
+                //logger.DeleteLocation(location); 
+            }
+        }
     }
 }
