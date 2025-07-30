@@ -16,8 +16,7 @@ Zoom / explore map
 /* 
 TODO TASKS 
 Add key for colours of presaved / searching points 
-Click on a existing saved pin to load its x and y location 
-Option to then delete pin
+Add the logic to location Logger to actually remove the point from csv 
 Allow user to add text notes about a given location 
 Update to use real DB not CSV file 
 Login / user then store points for that given user. 
