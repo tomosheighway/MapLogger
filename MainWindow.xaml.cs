@@ -1,7 +1,6 @@
 /* 
 TODO TASKS 
 Add key for colours of presaved / searching points 
-Add the logic to location Logger to actually remove the point from csv 
 Allow user to add text notes about a given location 
 Update to use real DB not CSV file 
 Login / user then store points for that given user. 
