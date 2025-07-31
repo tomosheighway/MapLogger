@@ -22,3 +22,6 @@ Login / user then store points for that given user.
 Add overlay lines similar to - https://www.independent-software.com/gmap-net-tutorial-maps-markers-and-polygons.html/
 Offline functionality to store localy etc 
 */
+
+
+SQLite probably the best database for project size and scope. Will be much better than just using csv to store the data  
