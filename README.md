@@ -10,6 +10,8 @@ Search exact X Y Coordinates
 Pin location temporary 
 Save pinned locations 
 Zoom / explore map 
+Select presaved pins to view location. 
+Remove saved pins
 
 
 
