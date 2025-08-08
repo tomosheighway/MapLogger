@@ -1,4 +1,4 @@
-WPF desktop application built with C# and .NET 9.0 using GMAP.net 
+WPF desktop application built with C# and .NET 9.0 using GMAP.net  
 
 This project aims to make a WDF application which loads a world map and allows the user to search and plot locations. 
 To further develop my experiance I will be using C# and .NET 9.0 and coding in the VSCODE IDE. GIT will be used for souce control.
