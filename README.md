@@ -18,7 +18,6 @@ Remove saved pins
 
 /* 
 TODO TASKS 
-Add key for colours of presaved / searching points 
 Allow user to add text notes about a given location 
 Update to use real DB not CSV file 
 Login / user then store points for that given user. 
