@@ -14,6 +14,21 @@
                 MouseDoubleClick="Zoom_MouseDoubleClick" 
                 MouseRightButtonDown="Save_MouseRightClick" />
 
+                     <!-- colour key   -->
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Margin="10">
+                        <StackPanel Orientation="Horizontal" Margin="0 2">
+                            <Ellipse Width="12" Height="12" Fill="Blue" Stroke="Black" StrokeThickness="1" Margin="0 5 0 0"/>
+                            <TextBlock Text="Temp" Margin="5,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 2">
+                            <Ellipse Width="12" Height="12" Fill="LightBlue" Stroke="Blue" StrokeThickness="1" Margin="0 5 0 0"/>
+                            <TextBlock Text="Saved" Margin="5,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+
                     <!-- Zoom buttons in top right -->
                     <StackPanel Orientation="Vertical"
                                 HorizontalAlignment="Right"
